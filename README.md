@@ -7,7 +7,7 @@ Projet réalisé dans le cadre du **Titre Professionnel Développeur Web et Web 
 | | Lien |
 |---|---|
 | Site en ligne (front) | _à compléter après déploiement Vercel_ |
-| API en ligne (back) | _à compléter après déploiement Railway_ |
+| API en ligne (back) | https://pathe78.alwaysdata.net/api |
 
 ---
 
@@ -33,7 +33,7 @@ vite-gourmand/
 | Base relationnelle | MySQL 8 (MariaDB en local avec XAMPP) |
 | Base NoSQL | MongoDB Atlas (statistiques des commandes) |
 | Authentification | JWT — LexikJWTAuthenticationBundle |
-| Déploiement | Vercel (front), Railway + Docker (API + MySQL) |
+| Déploiement | Vercel (front), alwaysdata (API + MariaDB), MongoDB Atlas |
 | Outils | VS Code, Git/GitHub, Composer, npm, Postman |
 
 ---
@@ -125,34 +125,54 @@ Pour modifier les styles : `npm run scss` (compile `scss/main.scss` en `scss/mai
 
 ## ☁️ Déploiement
 
-### API + MySQL sur Railway
+| Partie | Hébergeur | Pourquoi |
+|---|---|---|
+| Front-end | **Vercel** (gratuit) | Site statique servi par CDN, HTTPS, déploiement automatique à chaque push |
+| API + base MariaDB | **alwaysdata** (gratuit, France) | Toujours disponible (pas de mise en veille), même SGBD qu'en local, accès SSH + Composer, données en France (RGPD) |
+| Statistiques | **MongoDB Atlas** (M0 gratuit) | Base NoSQL managée |
 
-1. Sur [railway.app](https://railway.app) : **New Project → Deploy from GitHub repo** → choisir ce dépôt.
-2. Dans le service créé : **Settings → Root Directory** = `back`. Railway détecte le `Dockerfile`.
-3. Dans le projet : **+ New → Database → MySQL**.
-4. Dans le service de l'API, onglet **Variables** :
+### API sur alwaysdata — https://pathe78.alwaysdata.net/api
 
-   | Variable | Valeur |
-   |---|---|
-   | `DATABASE_URL` | `${{MySQL.MYSQL_URL}}?serverVersion=8.0&charset=utf8mb4` |
-   | `APP_SECRET` | une longue chaîne aléatoire |
-   | `JWT_PASSPHRASE` | une phrase secrète |
-   | `MONGODB_URL` | l'URL de connexion MongoDB Atlas |
-   | `MONGODB_DB` | `vite_gourmand_stats` |
-   | `CORS_ALLOW_ORIGIN` | `^https://vite-gourmand.*\.vercel\.app$` (adapter au domaine Vercel) |
+1. **Environnement → PHP** : choisir PHP 8.2 ou plus.
+2. **Bases de données → MySQL** : créer la base `pathe78_vitegourmand` (hôte `mysql-pathe78.alwaysdata.net`).
+3. **Accès distant → SSH** : activer la connexion par mot de passe, puis se connecter (ou utiliser le SSH web du panneau).
+4. En SSH :
 
-5. **Settings → Networking → Generate Domain**, avec le port **8080**.
+   ```bash
+   git clone https://github.com/pathe78/vite-gourmand.git
+   ad_install_pecl mongodb          # compile l'extension PHP MongoDB
+   ```
 
-Au démarrage, le conteneur génère les clés JWT, crée les tables (migrations) et insère les données de démonstration si la base est vide (voir `back/docker/start.sh`).
+   Ajouter la ligne `extension = /home/pathe78/mongodb.so` (chemin affiché par la commande) dans **Environnement → PHP → php.ini**.
 
-> MongoDB Atlas : dans **Network Access**, autoriser `0.0.0.0/0` pour que Railway puisse se connecter.
+5. Créer `~/vite-gourmand/back/.env.local` (jamais versionné) :
+
+   ```dotenv
+   APP_ENV=prod
+   APP_DEBUG=0
+   APP_SECRET=une_longue_chaine_aleatoire
+   DATABASE_URL="mysql://pathe78:MOT_DE_PASSE@mysql-pathe78.alwaysdata.net:3306/pathe78_vitegourmand?serverVersion=10.11.0-MariaDB&charset=utf8mb4"
+   JWT_PASSPHRASE=une_phrase_secrete
+   MONGODB_URL="mongodb+srv://UTILISATEUR:MOT_DE_PASSE@cluster0.xxxxx.mongodb.net/?appName=Cluster0"
+   MONGODB_DB=vite_gourmand_stats
+   CORS_ALLOW_ORIGIN='^https://.*\.vercel\.app$'
+   ```
+
+6. Lancer le script de mise en production : `bash ~/vite-gourmand/back/bin/deploy.sh`
+   (dépendances, clés JWT, migrations, données de démonstration, cache). Le même script sert pour chaque mise à jour.
+7. **Web → Sites** : modifier le site `pathe78.alwaysdata.net`, type **PHP**, racine `/vite-gourmand/back/public`.
+8. MongoDB Atlas → **Network Access** : autoriser `0.0.0.0/0`.
+
+Le fichier `back/public/.htaccess` envoie toutes les requêtes vers Symfony et transmet l'en-tête `Authorization` (token JWT) à PHP.
 
 ### Front sur Vercel
 
-1. Dans `front/js/config.js`, remplacer `API_PRODUCTION` par l'URL Railway suivie de `/api`, puis committer.
-2. Sur [vercel.com](https://vercel.com) : **Add New → Project** → choisir ce dépôt → **Root Directory** = `front` → Deploy.
+**Add New → Project** → dépôt `vite-gourmand` → **Root Directory** = `front` → Deploy.
+L'URL de l'API de production est définie dans `front/js/config.js`. Le fichier `front/vercel.json` renvoie toutes les URL vers `index.html` pour le routeur JavaScript.
 
-Le fichier `front/vercel.json` renvoie toutes les URL vers `index.html` pour que le routeur JavaScript fonctionne.
+### Alternative : Docker
+
+Le dossier `back/` contient aussi un `Dockerfile` (PHP 8.2 + Apache) et `back/docker/start.sh`, qui permettent de déployer l'API sur un hébergeur de conteneurs (Railway, Render…).
 
 ---
 
