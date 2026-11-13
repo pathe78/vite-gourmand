@@ -1,0 +1,196 @@
+<!-- ============================================================
+     Page : Mon compte (compte.html)
+     Espace client + espace employé + espace administrateur.
+     Les onglets affichés dépendent du rôle de l'utilisateur connecté.
+============================================================ -->
+
+<section class="section compte-section">
+    <div class="container">
+
+        <div class="d-flex flex-wrap justify-content-between align-items-end gap-2 mb-4">
+            <div>
+                <span class="section-label" id="compte-role-label">Espace client</span>
+                <h1 class="section-title mb-0" id="compte-bonjour">Mon compte</h1>
+            </div>
+        </div>
+
+        <!-- Message global (succès / erreur) -->
+        <div id="compte-message" class="alert d-none" role="alert"></div>
+
+        <!-- ONGLETS (générés selon le rôle) -->
+        <ul class="nav compte-tabs mb-4" id="compte-tabs" role="tablist"></ul>
+
+        <!-- ════════════ CLIENT : PROFIL ════════════ -->
+        <div class="compte-panel" data-panel="profil">
+            <div class="compte-card">
+                <h2 class="compte-card-title">Mes informations</h2>
+                <form id="form-profil" class="row g-3">
+                    <div class="col-md-6"><label class="auth-label" for="p-prenom">Prénom</label><input class="auth-input" id="p-prenom" maxlength="50" required></div>
+                    <div class="col-md-6"><label class="auth-label" for="p-nom">Nom</label><input class="auth-input" id="p-nom" maxlength="50" required></div>
+                    <div class="col-md-6"><label class="auth-label" for="p-email">E-mail</label><input class="auth-input prefilled" id="p-email" readonly></div>
+                    <div class="col-md-6"><label class="auth-label" for="p-telephone">Téléphone</label><input class="auth-input" id="p-telephone" maxlength="20" required></div>
+                    <div class="col-md-12"><label class="auth-label" for="p-adresse">Adresse</label><input class="auth-input" id="p-adresse" maxlength="150" required></div>
+                    <div class="col-md-8"><label class="auth-label" for="p-ville">Ville</label><input class="auth-input" id="p-ville" maxlength="50" required></div>
+                    <div class="col-md-4"><label class="auth-label" for="p-cp">Code postal</label><input class="auth-input" id="p-cp" maxlength="10" pattern="[0-9]{5}" required></div>
+                    <div class="col-12"><button class="btn-primary-vg" type="submit">Enregistrer</button></div>
+                </form>
+            </div>
+        </div>
+
+        <!-- ════════════ CLIENT : MES COMMANDES ════════════ -->
+        <div class="compte-panel" data-panel="commandes">
+            <div class="compte-card">
+                <h2 class="compte-card-title">Mes commandes</h2>
+                <div id="liste-mes-commandes"><p class="text-muted">Chargement…</p></div>
+            </div>
+        </div>
+
+        <!-- ════════════ EMPLOYÉ : COMMANDES ════════════ -->
+        <div class="compte-panel" data-panel="gestion-commandes">
+            <div class="compte-card">
+                <h2 class="compte-card-title">Toutes les commandes</h2>
+                <div class="row g-2 mb-3">
+                    <div class="col-md-4">
+                        <select class="filtre-input w-100" id="emp-filtre-statut" aria-label="Filtrer par statut">
+                            <option value="">Tous les statuts</option>
+                        </select>
+                    </div>
+                    <div class="col-md-5">
+                        <input class="filtre-input w-100" id="emp-filtre-client" placeholder="Rechercher un client (nom, e-mail)">
+                    </div>
+                    <div class="col-md-3"><button class="btn-mini w-100 h-100" id="emp-filtre-btn" type="button">Filtrer</button></div>
+                </div>
+                <div id="liste-commandes-employe"></div>
+            </div>
+        </div>
+
+        <!-- ════════════ EMPLOYÉ : AVIS ════════════ -->
+        <div class="compte-panel" data-panel="avis">
+            <div class="compte-card">
+                <h2 class="compte-card-title">Avis en attente de validation</h2>
+                <div id="liste-avis-attente"></div>
+            </div>
+        </div>
+
+        <!-- ════════════ EMPLOYÉ : MENUS ════════════ -->
+        <div class="compte-panel" data-panel="menus">
+            <div class="compte-card">
+                <h2 class="compte-card-title">Menus</h2>
+                <div id="liste-menus-employe"></div>
+            </div>
+        </div>
+
+        <!-- ════════════ EMPLOYÉ : HORAIRES ════════════ -->
+        <div class="compte-panel" data-panel="horaires">
+            <div class="compte-card">
+                <h2 class="compte-card-title">Horaires d'ouverture</h2>
+                <p class="text-muted small">Format HH:MM, ou « Fermé ». Les horaires s'affichent dans le pied de page du site.</p>
+                <div id="liste-horaires"></div>
+            </div>
+        </div>
+
+        <!-- ════════════ ADMIN : EMPLOYÉS ════════════ -->
+        <div class="compte-panel" data-panel="employes">
+            <div class="row g-4">
+                <div class="col-lg-5">
+                    <div class="compte-card">
+                        <h2 class="compte-card-title">Créer un compte employé</h2>
+                        <form id="form-employe" class="row g-3">
+                            <div class="col-6"><label class="auth-label" for="e-prenom">Prénom</label><input class="auth-input" id="e-prenom" maxlength="50" required></div>
+                            <div class="col-6"><label class="auth-label" for="e-nom">Nom</label><input class="auth-input" id="e-nom" maxlength="50" required></div>
+                            <div class="col-12"><label class="auth-label" for="e-email">E-mail</label><input class="auth-input" id="e-email" type="email" required></div>
+                            <div class="col-12">
+                                <label class="auth-label" for="e-password">Mot de passe</label>
+                                <input class="auth-input" id="e-password" type="password" minlength="10" required>
+                                <div class="form-text">10 caractères minimum, avec majuscule, minuscule, chiffre et caractère spécial.</div>
+                            </div>
+                            <div class="col-12"><button class="btn-primary-vg w-100" type="submit">Créer le compte</button></div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="compte-card">
+                        <h2 class="compte-card-title">Employés</h2>
+                        <div id="liste-employes"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ════════════ ADMIN : STATISTIQUES ════════════ -->
+        <div class="compte-panel" data-panel="stats">
+            <div class="compte-card mb-4">
+                <h2 class="compte-card-title">Nombre de commandes par menu</h2>
+                <p class="text-muted small">Données issues de la base NoSQL (MongoDB).</p>
+                <div id="stats-erreur" class="alert alert-warning d-none"></div>
+                <div class="chart-box"><canvas id="chart-commandes" aria-label="Graphique du nombre de commandes par menu" role="img"></canvas></div>
+            </div>
+            <div class="compte-card">
+                <h2 class="compte-card-title">Chiffre d'affaires par menu</h2>
+                <form id="form-ca" class="row g-2 align-items-end mb-3">
+                    <div class="col-md-4"><label class="auth-label" for="ca-debut">Du</label><input type="date" class="auth-input" id="ca-debut" required></div>
+                    <div class="col-md-4"><label class="auth-label" for="ca-fin">Au</label><input type="date" class="auth-input" id="ca-fin" required></div>
+                    <div class="col-md-4"><button class="btn-primary-vg w-100" type="submit">Calculer</button></div>
+                </form>
+                <div id="ca-resultat"></div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- Fenêtre : annulation d'une commande par un employé (motif + mode de contact obligatoires) -->
+<div class="modal fade" id="modal-annulation" tabindex="-1" aria-labelledby="modal-annulation-titre" aria-hidden="true">
+    <div class="modal-dialog">
+        <form class="modal-content" id="form-annulation">
+            <div class="modal-header">
+                <h2 class="modal-title fs-5" id="modal-annulation-titre">Annuler la commande</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+            </div>
+            <div class="modal-body">
+                <p class="small text-muted">Le client doit avoir été contacté avant l'annulation.</p>
+                <label class="auth-label" for="annul-contact">Client contacté par</label>
+                <select class="auth-input mb-3" id="annul-contact" required>
+                    <option value="">Choisir…</option>
+                    <option value="telephone">Téléphone</option>
+                    <option value="email">E-mail</option>
+                </select>
+                <label class="auth-label" for="annul-motif">Motif de l'annulation</label>
+                <textarea class="auth-input" id="annul-motif" rows="3" maxlength="1000" required></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-mini" data-bs-dismiss="modal">Retour</button>
+                <button type="submit" class="btn-primary-vg">Confirmer l'annulation</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Fenêtre : avis client sur une commande terminée -->
+<div class="modal fade" id="modal-avis" tabindex="-1" aria-labelledby="modal-avis-titre" aria-hidden="true">
+    <div class="modal-dialog">
+        <form class="modal-content" id="form-avis">
+            <div class="modal-header">
+                <h2 class="modal-title fs-5" id="modal-avis-titre">Donner mon avis</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+            </div>
+            <div class="modal-body">
+                <label class="auth-label" for="avis-note">Note</label>
+                <select class="auth-input mb-3" id="avis-note" required>
+                    <option value="5">★★★★★ — Excellent</option>
+                    <option value="4">★★★★☆ — Très bien</option>
+                    <option value="3">★★★☆☆ — Bien</option>
+                    <option value="2">★★☆☆☆ — Moyen</option>
+                    <option value="1">★☆☆☆☆ — Décevant</option>
+                </select>
+                <label class="auth-label" for="avis-texte">Votre commentaire</label>
+                <textarea class="auth-input" id="avis-texte" rows="4" maxlength="1000" required></textarea>
+                <p class="small text-muted mt-2 mb-0">Votre avis sera publié après validation par notre équipe.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-mini" data-bs-dismiss="modal">Annuler</button>
+                <button type="submit" class="btn-primary-vg">Envoyer</button>
+            </div>
+        </form>
+    </div>
+</div>
