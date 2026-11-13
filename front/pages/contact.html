@@ -1,0 +1,92 @@
+<!-- ============================================================
+     Page : Contact (contact.html)
+     Chargée dynamiquement dans #main-page par le Router
+============================================================ -->
+
+<section class="section">
+    <div class="container">
+        <div class="row g-4">
+
+            <!-- FORMULAIRE -->
+            <div class="col-md-7">
+                <span class="section-label">Nous contacter</span>
+                <h1 class="section-title mb-1">Une question ? 📩</h1>
+                <p class="section-sub">Remplissez le formulaire ci-dessous, nous vous répondrons dans les plus brefs délais.</p>
+
+                <div class="auth-card">
+                    <form id="form-contact">
+
+                        <div class="mb-3">
+                            <label class="auth-label">Titre / Objet</label>
+                            <input type="text" class="auth-input" id="contact-titre" placeholder="ex : Question sur un menu" required />
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="auth-label">Votre message</label>
+                            <textarea class="auth-input contact-textarea" id="contact-message" placeholder="Décrivez votre demande..." required></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="auth-label">Votre adresse e-mail</label>
+                            <input type="email" class="auth-input" id="contact-email" placeholder="sophie.dupont@mail.com" required />
+                        </div>
+
+                        <button type="submit" class="btn-primary-vg w-100">Envoyer le message</button>
+
+                    </form>
+
+                    <!-- Message succès -->
+                    <div class="auth-success mt-3 d-none" id="contact-success">
+                        ✅ Message envoyé ! Nous vous répondrons à <strong id="contact-email-confirm"></strong> dans les plus brefs délais.
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- INFOS PRATIQUES -->
+            <div class="col-md-5">
+                <div class="contact-infos">
+                    <h2 class="contact-infos-title">Nos coordonnées</h2>
+
+                    <div class="contact-info-item">
+                        <span class="contact-info-icon">📍</span>
+                        <div>
+                            <div class="contact-info-label">Adresse</div>
+                            <div class="contact-info-value">12 rue des Chais, 33000 Bordeaux</div>
+                        </div>
+                    </div>
+
+                    <div class="contact-info-item">
+                        <span class="contact-info-icon">📞</span>
+                        <div>
+                            <div class="contact-info-label">Téléphone</div>
+                            <div class="contact-info-value">05 56 00 00 00</div>
+                        </div>
+                    </div>
+
+                    <div class="contact-info-item">
+                        <span class="contact-info-icon">✉️</span>
+                        <div>
+                            <div class="contact-info-label">Email</div>
+                            <div class="contact-info-value">contact@vitegourmand.fr</div>
+                        </div>
+                    </div>
+
+                    <div class="contact-info-item">
+                        <span class="contact-info-icon">🕐</span>
+                        <div>
+                            <div class="contact-info-label">Horaires</div>
+                            <div class="contact-info-value">
+                                Lun – Ven : 9h – 19h<br>
+                                Samedi : 9h – 17h<br>
+                                Dimanche : 10h – 14h
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>

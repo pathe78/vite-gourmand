@@ -1,0 +1,84 @@
+// ============================================================
+//  Espace compte (client / employé / admin)
+// ============================================================
+
+.compte-section { min-height: 70vh; }
+
+.compte-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.75rem;
+}
+
+.compte-tab {
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 0.4rem 1rem;
+    font-size: 0.9rem;
+    color: var(--anthracite);
+    transition: all 0.2s;
+
+    &:hover { border-color: var(--terracotta); color: var(--terracotta); }
+    &.active { background: var(--terracotta); border-color: var(--terracotta); color: #fff; }
+}
+
+.compte-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.5rem;
+}
+
+.compte-card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.compte-table th {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--muted);
+    font-weight: 500;
+}
+
+.commande-ligne {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem;
+    margin-bottom: 0.75rem;
+    background: var(--cream);
+}
+
+.statut-badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    padding: 0.15rem 0.6rem;
+    border-radius: 999px;
+    background: #FDF0E8;
+    color: var(--terracotta-dark);
+    white-space: nowrap;
+}
+.statut-termine, .statut-livre { background: var(--green-light); color: var(--green); }
+.statut-annule { background: #FCEBEB; color: #A32D2D; }
+.statut-en_attente { background: #FFF6E0; color: #8A5A00; }
+
+.btn-mini {
+    border: 1px solid var(--terracotta);
+    background: #fff;
+    color: var(--terracotta);
+    border-radius: 8px;
+    padding: 0.3rem 0.7rem;
+    font-size: 0.85rem;
+    white-space: nowrap;
+
+    &:hover { background: var(--terracotta); color: #fff; }
+    &.danger { border-color: #A32D2D; color: #A32D2D; }
+    &.danger:hover { background: #A32D2D; color: #fff; }
+}
+
+.chart-box { position: relative; height: 320px; }
