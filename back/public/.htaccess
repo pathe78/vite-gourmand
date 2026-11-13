@@ -1,0 +1,18 @@
+# Configuration Apache pour l'hébergement mutualisé (alwaysdata)
+DirectoryIndex index.php
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Transmet l'en-tête Authorization (token JWT) à PHP
+    RewriteCond %{HTTP:Authorization} .+
+    RewriteRule ^ - [E=HTTP_AUTHORIZATION:%0]
+
+    # Toute URL qui n'est pas un fichier existant est envoyée à Symfony
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ index.php [QSA,L]
+</IfModule>
+
+<IfModule !mod_rewrite.c>
+    FallbackResource /index.php
+</IfModule>
