@@ -1,0 +1,128 @@
+<!-- ============================================================
+     Page : Commander un menu (commande.html)
+============================================================ -->
+
+<div class="breadcrumb-vg">
+    <div class="container">
+        <a href="/" onclick="route(event)">Accueil</a>
+        <span>›</span>
+        <a href="/menus" onclick="route(event)">Nos menus</a>
+        <span>›</span>
+        <span>Commander</span>
+    </div>
+</div>
+
+<section class="section">
+    <div class="container">
+        <h1 class="section-title mb-1">🛒 Commander un menu</h1>
+        <p class="section-sub">Remplissez le formulaire ci-dessous pour finaliser votre commande.</p>
+
+        <div class="row g-4 align-items-start">
+
+            <!-- FORMULAIRE -->
+            <div class="col-md-8">
+                <form id="form-commande">
+
+                    <!-- Bloc 1 : Infos client -->
+                    <div class="commande-card mb-3">
+                        <div class="commande-card-title">👤 Vos informations</div>
+                        <div class="row g-3">
+                            <div class="col-6">
+                                <label class="auth-label">Prénom</label>
+                                <input type="text" class="auth-input prefilled" id="cmd-prenom" readonly />
+                            </div>
+                            <div class="col-6">
+                                <label class="auth-label">Nom</label>
+                                <input type="text" class="auth-input prefilled" id="cmd-nom" readonly />
+                            </div>
+                            <div class="col-6">
+                                <label class="auth-label">Email</label>
+                                <input type="email" class="auth-input prefilled" id="cmd-email" readonly />
+                            </div>
+                            <div class="col-6">
+                                <label class="auth-label">Téléphone</label>
+                                <input type="tel" class="auth-input prefilled" id="cmd-telephone" readonly />
+                            </div>
+                        </div>
+                        <p class="prefilled-hint mt-2">🔒 Informations récupérées depuis votre compte</p>
+                    </div>
+
+                    <!-- Bloc 2 : Livraison -->
+                    <div class="commande-card mb-3">
+                        <div class="commande-card-title">📍 Livraison</div>
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <label class="auth-label">Adresse de livraison</label>
+                                <input type="text" class="auth-input" id="cmd-adresse" placeholder="12 rue Sainte-Catherine, 33000 Bordeaux" required />
+                            </div>
+                            <div class="col-6">
+                                <label class="auth-label">Date de la prestation</label>
+                                <input type="date" class="auth-input" id="cmd-date" required />
+                            </div>
+                            <div class="col-6">
+                                <label class="auth-label">Heure de livraison</label>
+                                <input type="time" class="auth-input" id="cmd-heure" required />
+                            </div>
+                            <div class="col-12">
+                                <label class="auth-label">Lieu précis</label>
+                                <input type="text" class="auth-input" id="cmd-lieu" placeholder="ex : Salle des fêtes, rez-de-chaussée" />
+                            </div>
+                        </div>
+                        <div class="alert-conditions mt-3">
+                            <div class="alert-conditions-title">⚠️ Livraison hors Bordeaux</div>
+                            <ul class="alert-conditions-list">
+                                <li>Frais : <strong>5€ fixes + 0,59€ par kilomètre</strong> parcouru.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Bloc 3 : Menu & personnes -->
+                    <div class="commande-card mb-3">
+                        <div class="commande-card-title">🍽️ Menu &amp; nombre de personnes</div>
+
+                        <div class="menu-selected mb-3">
+                            <span class="menu-selected-emoji">🍽️</span>
+                            <div class="flex-grow-1">
+                                <div class="menu-selected-name" id="menu-selected-name">Chargement...</div>
+                                <div class="menu-selected-meta" id="menu-selected-meta"></div>
+                            </div>
+                            <a href="/menus" onclick="route(event)" class="menu-selected-change">Changer</a>
+                        </div>
+
+                        <label class="auth-label">Nombre de personnes</label>
+                        <div class="qty-selector mb-2">
+                            <button type="button" class="qty-btn" id="qty-minus">−</button>
+                            <span class="qty-value" id="qty-value">1</span>
+                            <button type="button" class="qty-btn" id="qty-plus">+</button>
+                            <span class="qty-note" id="qty-note">minimum — personnes</span>
+                        </div>
+                        <div class="discount-badge d-none" id="discount-badge">
+                            🎉 Réduction de 10% appliquée !
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-primary-vg w-100">✅ Confirmer la commande</button>
+
+                </form>
+
+                <div class="auth-success mt-3 d-none" id="commande-success">
+                    ✅ Commande confirmée ! Vous pouvez la suivre dans <a href="/compte" onclick="route(event)">votre espace</a>.
+                </div>
+            </div>
+
+            <!-- RÉCAPITULATIF -->
+            <div class="col-md-4">
+                <div class="recap-commande">
+                    <div class="recap-commande-title">🧾 Récapitulatif</div>
+                    <div class="recap-commande-row"><span>Personnes</span><span id="recap-personnes">—</span></div>
+                    <div class="recap-commande-row"><span>Sous-total</span><span id="recap-sous-total">—</span></div>
+                    <div class="recap-commande-row discount d-none" id="recap-reduction"><span>Réduction (-10%)</span><span id="recap-reduction-val">—</span></div>
+                    <div class="recap-commande-row"><span>Livraison</span><span id="recap-livraison">Gratuite à Bordeaux</span></div>
+                    <div class="recap-commande-total"><span>Total</span><span id="recap-total">—</span></div>
+                    <p class="recap-commande-note">Un email de confirmation vous sera envoyé après validation.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>

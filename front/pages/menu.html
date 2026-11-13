@@ -1,0 +1,97 @@
+<!-- ============================================================
+     Page : Détail d'un menu (menu.html)
+     Chargée dynamiquement dans #main-page par le Router
+============================================================ -->
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb-vg">
+    <div class="container">
+        <a href="/" onclick="route(event)">Accueil</a>
+        <span>›</span>
+        <a href="/menus" onclick="route(event)">Nos menus</a>
+        <span>›</span>
+        <span id="breadcrumb-menu">Chargement...</span>
+    </div>
+</div>
+
+<!-- HERO MENU -->
+<div class="menu-hero">
+    <div class="container">
+        <div class="row g-4 align-items-start">
+
+            <!-- Galerie -->
+            <div class="col-md-6">
+                <div class="menu-gallery-main">🍽️</div>
+                <div class="row g-2 mt-2">
+                    <div class="col-4"><div class="menu-gallery-thumb">🥗</div></div>
+                    <div class="col-4"><div class="menu-gallery-thumb">🎂</div></div>
+                    <div class="col-4"><div class="menu-gallery-thumb">🍷</div></div>
+                </div>
+            </div>
+
+            <!-- Infos -->
+            <div class="col-md-6">
+                <span id="menu-badge" class="badge-theme classique mb-2">Chargement...</span>
+                <h1 class="menu-detail-title" id="menu-titre">Chargement...</h1>
+                <p class="menu-detail-desc" id="menu-description"></p>
+
+                <div class="d-flex gap-3 flex-wrap mb-3">
+                    <div class="meta-pill">
+                        <span class="meta-pill-label">Prix</span>
+                        <span class="meta-pill-value price" id="menu-prix">—</span>
+                    </div>
+                    <div class="meta-pill">
+                        <span class="meta-pill-label">Minimum</span>
+                        <span class="meta-pill-value" id="menu-personnes">—</span>
+                    </div>
+                    <div class="meta-pill">
+                        <span class="meta-pill-label">Régime</span>
+                        <span class="meta-pill-value" id="menu-regime">—</span>
+                    </div>
+                    <div class="meta-pill">
+                        <span class="meta-pill-label">Stock</span>
+                        <span class="meta-pill-value stock" id="menu-stock">—</span>
+                    </div>
+                </div>
+
+                <!-- Conditions -->
+                <div class="alert-conditions mb-3">
+                    <div class="alert-conditions-title">⚠️ Conditions importantes</div>
+                    <ul class="alert-conditions-list">
+                        <li>Commander au minimum <strong>7 jours avant</strong> la prestation.</li>
+                        <li>Conserver entre <strong>0°C et 4°C</strong>, consommer sous <strong>24h</strong> après livraison.</li>
+                        <li>Du matériel peut être fourni sur demande (restitution sous 10 jours ouvrés).</li>
+                    </ul>
+                </div>
+
+                <button id="btn-commander" class="btn-primary-vg w-100 text-center">🛒 Commander ce menu</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- COMPOSITION DU MENU -->
+<section class="section">
+    <div class="container">
+        <h2 class="section-title">🍽️ Composition du menu</h2>
+        <div class="row g-3 mt-2" id="plats-container">
+            <!-- Généré dynamiquement par menu.js -->
+        </div>
+
+        <!-- Récap prix -->
+        <div class="recap-prix mt-4">
+            <h3 class="recap-prix-title">💰 Récapitulatif du prix</h3>
+            <div class="recap-prix-row"><span>Prix par personne</span><span id="recap-prix-pers">—</span></div>
+            <div class="recap-prix-row"><span>Minimum de personnes</span><span id="recap-prix-min">—</span></div>
+            <div class="recap-prix-row discount"><span>🎉 Réduction 10%</span><span id="recap-prix-seuil">—</span></div>
+            <div class="recap-prix-row total"><span>Prix total minimum</span><span id="recap-prix-total">—</span></div>
+            <p class="recap-prix-note">Livraison hors Bordeaux : 5€ + 0,59€/km — calculée lors de la commande.</p>
+        </div>
+
+        <div class="text-center mt-4">
+            <button id="btn-commander-2" class="btn-primary-vg">🛒 Commander ce menu</button>
+        </div>
+
+    </div>
+</section>

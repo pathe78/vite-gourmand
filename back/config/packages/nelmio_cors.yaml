@@ -1,0 +1,12 @@
+# Les origines autorisées viennent de la variable d'environnement CORS_ALLOW_ORIGIN
+# (expression régulière), pour pouvoir autoriser le front local ET le front déployé.
+nelmio_cors:
+    defaults:
+        origin_regex: true
+        allow_origin: ['%env(CORS_ALLOW_ORIGIN)%']
+        allow_methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
+        allow_headers: ['Content-Type', 'Authorization']
+        expose_headers: ['Link']
+        max_age: 3600
+    paths:
+        '^/api': ~
