@@ -1,0 +1,92 @@
+<!-- ============================================================
+     Page : Accueil (home.html)
+     Chargée dynamiquement dans #main-page par le Router
+============================================================ -->
+
+<!-- HERO -->
+<section class="hero">
+    <div class="container">
+        <span class="hero-tag">Traiteur à Bordeaux depuis 25 ans</span>
+        <h1>La <span>bonne cuisine</span>,<br>livrée chez vous</h1>
+        <p>Julie et José vous proposent des menus faits maison pour tous vos événements : Noël, Pâques, repas d'entreprise ou simple repas en famille.</p>
+        <div class="d-flex gap-3 justify-content-center flex-wrap">
+            <a href="/menus" onclick="route(event)" class="btn-primary-vg">Voir nos menus</a>
+            <a href="/contact" onclick="route(event)" class="btn-outline-vg">Nous contacter</a>
+        </div>
+    </div>
+</section>
+
+<!-- VALEURS -->
+<section class="section">
+    <div class="container">
+        <span class="section-label">Nos engagements</span>
+        <h2 class="section-title">Pourquoi nous choisir ?</h2>
+        <p class="section-sub">Une équipe passionnée, des produits frais et un savoir-faire reconnu depuis 1999.</p>
+        <div class="row g-3">
+            <div class="col-6 col-md-3">
+                <div class="value-card">
+                    <span class="value-icon">🍽️</span>
+                    <div class="value-title">25 ans d'expérience</div>
+                    <div class="value-desc">Un savoir-faire artisanal transmis avec passion depuis 1999 à Bordeaux.</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="value-card">
+                    <span class="value-icon">🥦</span>
+                    <div class="value-title">Produits frais</div>
+                    <div class="value-desc">Nous sélectionnons des produits locaux et de saison pour chaque menu.</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="value-card">
+                    <span class="value-icon">🚚</span>
+                    <div class="value-title">Livraison partout</div>
+                    <div class="value-desc">Nous livrons à Bordeaux et alentours pour tous vos événements.</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="value-card">
+                    <span class="value-icon">⭐</span>
+                    <div class="value-title">Menus sur mesure</div>
+                    <div class="value-desc">Classique, végétarien, vegan ou thématique — un menu pour chaque occasion.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- EQUIPE -->
+<section class="section-alt">
+    <div class="container">
+        <span class="section-label">L'équipe</span>
+        <h2 class="section-title">Deux passionnés à votre service</h2>
+        <p class="section-sub">Julie et José vous accueillent depuis 1999.</p>
+        <div class="row g-3">
+            <div class="col-md-6">
+                <div class="team-card">
+                    <div class="team-avatar">👩‍🍳</div>
+                    <div>
+                        <div class="team-name">Julie Martin</div>
+                        <div class="team-role">Co-fondatrice &amp; Chef cuisinière</div>
+                        <div class="team-bio">Passionnée de gastronomie du sud-ouest, Julie compose les menus avec soin et créativité depuis la création de l'entreprise en 1999.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="team-card">
+                    <div class="team-avatar" style="background:#FEF9F0;">👨‍🍳</div>
+                    <div>
+                        <div class="team-name">José Fernandez</div>
+                        <div class="team-role">Co-fondateur &amp; Responsable logistique</div>
+                        <div class="team-bio">José assure la coordination des livraisons et veille à ce que chaque prestation se déroule dans les meilleures conditions.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- AVIS -->
+<div class="row g-3" id="avis-container">
+    <!-- Généré dynamiquement par home.js -->
+</div>
