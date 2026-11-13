@@ -1,0 +1,58 @@
+<!-- ============================================================
+     Page : Connexion (connexion.html)
+     Chargée dynamiquement dans #main-page par le Router
+============================================================ -->
+
+<section class="auth-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-5">
+
+                <div class="auth-card">
+                    <h1 class="auth-title">Bienvenue 👋</h1>
+                    <p class="auth-sub">Connectez-vous à votre compte Vite &amp; Gourmand.</p>
+
+                    <!-- ONGLETS -->
+                    <div class="auth-tabs">
+                        <button class="auth-tab active" id="tab-connexion">Connexion</button>
+                        <button class="auth-tab" id="tab-inscription">Créer un compte</button>
+                    </div>
+
+                    <!-- FORMULAIRE CONNEXION -->
+                    <form id="form-connexion">
+                        <div class="mb-3">
+                            <label class="auth-label">Adresse e-mail</label>
+                            <input type="email" class="auth-input" placeholder="sophie.dupont@mail.com" required />
+                        </div>
+                        <div class="mb-3">
+                            <label class="auth-label">Mot de passe</label>
+                            <input type="password" class="auth-input" placeholder="••••••••••" required />
+                        </div>
+                        <div class="text-end mb-3">
+                            <a href="#" class="auth-forgot" id="btn-forgot">Mot de passe oublié ?</a>
+                        </div>
+                        <button type="submit" class="btn-primary-vg w-100">Se connecter</button>
+                        <p class="auth-switch mt-3">Pas encore de compte ? <a href="/inscription" onclick="route(event)">Créer un compte</a></p>
+                    </form>
+
+                    <!-- FORMULAIRE MOT DE PASSE OUBLIÉ (caché par défaut) -->
+                    <form id="form-forgot" class="d-none">
+                        <h2 class="auth-title" style="font-size:1.2rem;">🔑 Mot de passe oublié ?</h2>
+                        <p class="auth-sub">Saisissez votre email pour recevoir un lien de réinitialisation.</p>
+                        <div class="mb-3">
+                            <label class="auth-label">Adresse e-mail</label>
+                            <input type="email" class="auth-input" placeholder="sophie.dupont@mail.com" required />
+                        </div>
+                        <button type="submit" class="btn-primary-vg w-100">Envoyer le lien</button>
+                        <div class="auth-success mt-3 d-none" id="forgot-success">
+                            📧 Un lien de réinitialisation valable 24h vous a été envoyé.
+                        </div>
+                        <p class="auth-switch mt-3"><a href="#" id="btn-back-login">← Retour à la connexion</a></p>
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
