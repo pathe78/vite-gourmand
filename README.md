@@ -6,7 +6,7 @@ Projet réalisé dans le cadre du **Titre Professionnel Développeur Web et Web 
 
 | | Lien |
 |---|---|
-| Site en ligne (front) | _à compléter après déploiement Vercel_ |
+| Site en ligne (front) | https://vite-gourmand-front.vercel.app |
 | API en ligne (back) | https://pathe78.alwaysdata.net/api |
 
 ---
@@ -155,7 +155,7 @@ Pour modifier les styles : `npm run scss` (compile `scss/main.scss` en `scss/mai
    JWT_PASSPHRASE=une_phrase_secrete
    MONGODB_URL="mongodb+srv://UTILISATEUR:MOT_DE_PASSE@cluster0.xxxxx.mongodb.net/?appName=Cluster0"
    MONGODB_DB=vite_gourmand_stats
-   CORS_ALLOW_ORIGIN='^https://.*\.vercel\.app$'
+   CORS_ALLOW_ORIGIN='^https://vite-gourmand-front\.vercel\.app$'
    ```
 
 6. Lancer le script de mise en production : `bash ~/vite-gourmand/back/bin/deploy.sh`
