@@ -4,6 +4,8 @@
 --  Usage : importer dans phpMyAdmin, ou : mysql -u root < database/01_creation_base.sql
 -- ============================================================
 
+SET NAMES utf8mb4;
+
 CREATE DATABASE IF NOT EXISTS vite_gourmand CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE vite_gourmand;
 SET FOREIGN_KEY_CHECKS = 0;

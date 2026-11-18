@@ -5,6 +5,7 @@
 --  Alternative : php bin/console app:seed-demo
 -- ============================================================
 
+SET NAMES utf8mb4;
 USE vite_gourmand;
 SET FOREIGN_KEY_CHECKS = 0;
 
